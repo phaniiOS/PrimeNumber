@@ -14,13 +14,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var UserInput: UITextField!
     @IBOutlet weak var ResultLabel: UILabel!
     @IBAction func ChcekButton(_ sender: Any) {
+        if !((UserInput.text?.isEmpty)!){
         let a = UserInput.text
         if Int(a!) == nil{
-                let alert = UIAlertController(title: "Error in Input", message: "Input should only contain numbers", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error in Input", message: "Input should only contain numeric values", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-                ResultLabel.text = "Error in input, non-numeric values are in input."
+                ResultLabel.text = "Error, input should contaion only numeric values"
         }
         else{//enters only if input is numeric
             let aNum = Int(a!)
@@ -29,11 +30,11 @@ class ViewController: UIViewController {
                 ResultLabel.text = "1 is neither prime nor composite"
             }
             else if aNum! < 1{
-                let alert = UIAlertController(title: "Error in Input", message: "Input should be in greater than 0", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error in Input", message: "Input should be greater than 0", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-                ResultLabel.text = "Error, input should be in greater than 0"
+                ResultLabel.text = "Error, input should be greater than 0"
             }
             else{
                 let num: Int? = Int(UserInput.text!)
@@ -52,6 +53,14 @@ class ViewController: UIViewController {
                     ResultLabel.text = "Result: \(num!) is not a Prime"
                 }
             }
+        }
+        }
+        else{
+            let alert = UIAlertController(title: "Error in Input", message: "Input should not be empty", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            ResultLabel.text = "Error, input should not be empty"
         }
     }
     
